@@ -1,0 +1,21 @@
+:host {
+	/* nz-breadcrumb */
+	margin: 16px 0;
+
+	/* .ant-divider, .ant-dropdown, .ant-form, .ant-form input[type=search], .ant-form-item, .ant-layout, .ant-layout *, .ant-list, .ant-tag, .ant-time-picker */
+	box-sizing: border-box;
+
+	/* .ant-breadcrumb */
+	padding: 0;
+	font-variant: tabular-nums;
+	line-height: 1.5;
+	list-style: none;
+	font-feature-settings: "tnum";
+	color: rgba(0, 0, 0, .45);
+
+	/* .ant-breadcrumb, .ant-breadcrumb .anticon, .ant-btn */
+	font-size: 14px;
+
+	/* nz-breadcrum */
+	display: block;
+}

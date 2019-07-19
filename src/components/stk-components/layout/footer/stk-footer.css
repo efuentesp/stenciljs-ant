@@ -1,0 +1,10 @@
+footer {
+  flex: 0 0 auto;
+}
+
+footer {
+  padding: var(--layout-footer-padding);
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  background: var(--layout-footer-background);
+}

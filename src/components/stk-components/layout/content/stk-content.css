@@ -1,0 +1,15 @@
+main {
+	/* nz-content */
+	background: #fff;
+	padding: 24px;
+	min-height: 280px;
+
+	/* .ant-layout-content */
+	flex: auto;
+
+	/* .ant-divider, .ant-dropdown, .ant-form, .ant-form input[type=search], .ant-form-item, .ant-layout, .ant-layout *, .ant-list, .ant-tag, .ant-time-picker */
+	box-sizing: border-box;
+
+	/* nz-content */
+	display: block;
+}

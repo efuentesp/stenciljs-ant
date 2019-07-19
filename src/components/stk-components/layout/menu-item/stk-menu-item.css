@@ -1,0 +1,29 @@
+li {
+	/* .ant-menu-dark.ant-menu-horizontal>.ant-menu-item, .ant-menu-dark.ant-menu-horizontal>.ant-menu-submenu */
+	top: 0;
+	margin-top: 0;
+	border-color: #001529;
+	border-bottom: 0;
+
+	/* .ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item>a */
+	color: rgba(255, 255, 255, .65);
+
+	/* .ant-menu-horizontal>.ant-menu-item, .ant-menu-horizontal>.ant-menu-submenu */
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+
+	/* .ant-menu-item, .ant-menu-submenu-title */
+	margin: 0;
+	padding: 0 20px;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: color .3s cubic-bezier(.645, .045, .355, 1), border-color .3s cubic-bezier(.645, .045, .355, 1),
+		background .3s cubic-bezier(.645, .045, .355, 1), padding .15s cubic-bezier(.645, .045, .355, 1);
+
+	/* .ant-divider, .ant-dropdown, .ant-form, .ant-form input[type=search], .ant-form-item, .ant-layout, .ant-layout *, .ant-list, .ant-tag, .ant-time-picker */
+	box-sizing: border-box;
+
+	/* li */
+	text-align: -webkit-match-parent;
+}

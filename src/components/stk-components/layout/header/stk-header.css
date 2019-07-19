@@ -1,0 +1,7 @@
+header {
+  flex: 0 0 auto;
+  height: var(--layout-header-height, 64px);
+  padding: var(--layout-header-padding, 0 50px);
+  line-height: var(--layout-header-height, 64px);
+  background: var(--layout-header-background, #001529);
+}

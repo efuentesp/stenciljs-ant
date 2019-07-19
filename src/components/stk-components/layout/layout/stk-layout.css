@@ -1,0 +1,21 @@
+:host {
+	/* .ant-layout.ant-layout-has-sider */
+	/* flex-direction: row; */
+
+	/* .ant-layout.ant-layout-has-sider>.ant-layout, .ant-layout.ant-layout-has-sider>.ant-layout-content */
+	/* overflow-x: hidden; */
+
+	/* .ant-layout */
+	display: flex;
+	flex: auto;
+	flex-direction: column;
+	min-height: 0;
+	background: #f0f2f5;
+
+	/* .ant-divider, .ant-dropdown, .ant-form, .ant-form input[type=search], .ant-form-item, .ant-layout, .ant-layout *, .ant-list, .ant-tag, .ant-time-picker */
+	box-sizing: border-box;
+}
+
+.inner-layout {
+	padding: 0 24px 24px;
+}
