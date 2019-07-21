@@ -1,75 +1,154 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/citibanamex-flex-web-components.esm.js"></script>
-  <script nomodule src="/build/citibanamex-flex-web-components.js"></script>
+    <script
+      type="module"
+      src="/build/citibanamex-flex-web-components.esm.js"
+    ></script>
+    <script nomodule src="/build/citibanamex-flex-web-components.js"></script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <script src="https://kit.fontawesome.com/b46d234590.js"></script>
+    <!-- <link
+      rel="stylesheet"
+      href="../node_modules/font-awesome/css/font-awesome.min.css"
+    /> -->
 
-    body, html {
-      width: 100%;
-      height: 100%;
-    }
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-    html {
-      --layout-header-background: #001529;
-    }
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+      }
 
-    body {
-      margin: 0;
-      color: rgba(0,0,0,.65);
-      font-size: 14px;
-      font-variant: tabular-nums;
-      line-height: 1.5;
-      background-color: #fff;
-      font-feature-settings: "tnum";
+      html {
+        --layout-header-background: #001529;
+      }
 
-      /* .ant-calendar-picker-container, body */
-      font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'
-    }
-  </style>
+      body {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 14px;
+        font-variant: tabular-nums;
+        line-height: 1.5;
+        background-color: #fff;
+        font-feature-settings: "tnum";
 
-</head>
-<body>
-
-  <stk-layout>
-    <stk-header>
-      <stk-header-logo></stk-header-logo>
-      <stk-header-menu theme="dark" mode="horizontal">
-        <stk-menu-item label="nav 1" selected=true></stk-menu-item>
-        <stk-menu-item label="nav 2" ></stk-menu-item>
-      </stk-header-menu>
-    </stk-header>
+        /* .ant-calendar-picker-container, body */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+    </style>
+  </head>
+  <body>
     <stk-layout>
-      <stk-sider width="200px" theme="light">
-        <stk-sider-menu mode="inline">
-          <stk-submenu open=true title="subnav 1" icon="user">
-            <stk-menu-item selected=true>option 1</stk-menu-item>
-            <stk-menu-item>option 2</stk-menu-item>
-          </stk-submenu>
-        </stk-sider-menu>
-      </stk-sider>
-      <stk-layout inner-layout=true>
-        <stk-breadcrumb>
-          <stk-breadcrumb-item label="Home /"></stk-breadcrumb-item>
-          <stk-breadcrumb-item label="List"></stk-breadcrumb-item>
-        </stk-breadcrumb>
-        <stk-content>
-        
-          <cbf-tags caption="Campo 1"></cbf-tags>
-        
-        </stk-content>
-      </stk-layout>
-    </stk-layout>
-    <stk-footer></stk-footer>
-  </stk-layout>
+      <stk-header>
+        <stk-header-logo></stk-header-logo>
+        <stk-header-menu theme="dark" mode="horizontal">
+          <stk-menu-item label="nav 1" selected="true"></stk-menu-item>
+          <stk-menu-item label="nav 2"></stk-menu-item>
+        </stk-header-menu>
+      </stk-header>
+      <stk-layout>
+        <stk-sider width="200px" theme="light">
+          <stk-sider-menu mode="inline">
+            <stk-submenu open="true" title="subnav 1" icon="user">
+              <stk-menu-item selected="true">option 1</stk-menu-item>
+              <stk-menu-item>option 2</stk-menu-item>
+            </stk-submenu>
+          </stk-sider-menu>
+        </stk-sider>
+        <stk-layout inner-layout="true">
+          <stk-breadcrumb>
+            <stk-breadcrumb-item label="Home >"></stk-breadcrumb-item>
+            <stk-breadcrumb-item label="List"></stk-breadcrumb-item>
+          </stk-breadcrumb>
+          <stk-content>
+            <stk-row>
+              <stk-col xs="12" xs-offset="12" md="6" md-offset="6">
+                <stk-button onclick="onClick()">Default</stk-button>
+                <stk-button type="primary">Primary</stk-button>
+                <stk-button type="danger">Danger</stk-button>
+                <stk-button type="link">Link</stk-button>
+              </stk-col>
+              <stk-col span="12">
+                <stk-button type="primary" icon="fas fa-search"
+                  >Search</stk-button
+                >
+                <stk-button type="danger" icon="fas fa-trash-alt"
+                  >Delete</stk-button
+                >
+              </stk-col>
+            </stk-row>
 
-</body>
+            <stk-row>
+              <stk-col span="6" }>
+                <stk-button
+                  type="primary"
+                  icon="fas fa-search"
+                  disabled
+                  onclick="onClick()"
+                  >Search</stk-button
+                >
+              </stk-col>
+              <stk-col span="6">
+                <stk-button type="primary" icon="fas fa-search" disabled loading
+                  >Searching</stk-button
+                >
+              </stk-col>
+            </stk-row>
+
+            <stk-row>
+              <stk-col span="6">
+                <stk-button-group>
+                  <stk-button icon="fas fa-download"></stk-button>
+                  <stk-button icon="fas fa-upload"></stk-button>
+                  <stk-button icon="fas fa-print"></stk-button>
+                </stk-button-group>
+              </stk-col>
+              <stk-col span="6">
+                <stk-button-group>
+                  <stk-button icon="fas fa-download"></stk-button>
+                  <stk-button icon="fas fa-upload"></stk-button>
+                  <stk-button icon="fas fa-print"></stk-button>
+                </stk-button-group>
+              </stk-col>
+            </stk-row>
+
+            <br />
+            <br />
+            <stk-row>
+              <stk-col span="12" offset="12">
+                <stk-button type="primary" icon="fas fa-search" block
+                  >Block Search</stk-button
+                >
+              </stk-col>
+            </stk-row>
+
+            <!-- <cbf-tags caption="Campo 1"></cbf-tags> -->
+          </stk-content>
+        </stk-layout>
+      </stk-layout>
+      <stk-footer></stk-footer>
+    </stk-layout>
+  </body>
+  <script>
+    // document.getElementById("btn-primary").addEventListener("click", onClick());
+
+    function onClick() {
+      alert("onClick()");
+    }
+  </script>
 </html>

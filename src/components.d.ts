@@ -6,7 +6,12 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  StkButtonType,
+} from './components/stk-components/content/button/stk-button';
+import {
+  StkSpan,
+} from './components/stk-components/grid/stk-col/stk-col';
 
 export namespace Components {
   interface CbfTags {
@@ -30,6 +35,28 @@ export namespace Components {
   interface StkBreadcrumbItem {
     'label': string;
   }
+  interface StkButton {
+    'block': boolean;
+    'disabled': boolean;
+    'icon': string;
+    'loading': boolean;
+    'type': StkButtonType;
+  }
+  interface StkButtonGroup {}
+  interface StkCol {
+    'lg': StkSpan;
+    'lgOffset': StkSpan;
+    'md': StkSpan;
+    'mdOffset': StkSpan;
+    'offset': StkSpan;
+    'sm': StkSpan;
+    'smOffset': StkSpan;
+    'span': StkSpan;
+    'xl': StkSpan;
+    'xlOffset': StkSpan;
+    'xs': StkSpan;
+    'xsOffset': StkSpan;
+  }
   interface StkContent {}
   interface StkFooter {}
   interface StkHeader {}
@@ -41,6 +68,7 @@ export namespace Components {
   interface StkMenuItem {
     'label': string;
   }
+  interface StkRow {}
   interface StkSider {}
   interface StkSiderMenu {}
 }
@@ -70,6 +98,24 @@ declare global {
   var HTMLStkBreadcrumbItemElement: {
     prototype: HTMLStkBreadcrumbItemElement;
     new (): HTMLStkBreadcrumbItemElement;
+  };
+
+  interface HTMLStkButtonElement extends Components.StkButton, HTMLStencilElement {}
+  var HTMLStkButtonElement: {
+    prototype: HTMLStkButtonElement;
+    new (): HTMLStkButtonElement;
+  };
+
+  interface HTMLStkButtonGroupElement extends Components.StkButtonGroup, HTMLStencilElement {}
+  var HTMLStkButtonGroupElement: {
+    prototype: HTMLStkButtonGroupElement;
+    new (): HTMLStkButtonGroupElement;
+  };
+
+  interface HTMLStkColElement extends Components.StkCol, HTMLStencilElement {}
+  var HTMLStkColElement: {
+    prototype: HTMLStkColElement;
+    new (): HTMLStkColElement;
   };
 
   interface HTMLStkContentElement extends Components.StkContent, HTMLStencilElement {}
@@ -114,6 +160,12 @@ declare global {
     new (): HTMLStkMenuItemElement;
   };
 
+  interface HTMLStkRowElement extends Components.StkRow, HTMLStencilElement {}
+  var HTMLStkRowElement: {
+    prototype: HTMLStkRowElement;
+    new (): HTMLStkRowElement;
+  };
+
   interface HTMLStkSiderElement extends Components.StkSider, HTMLStencilElement {}
   var HTMLStkSiderElement: {
     prototype: HTMLStkSiderElement;
@@ -130,6 +182,9 @@ declare global {
     'my-component': HTMLMyComponentElement;
     'stk-breadcrumb': HTMLStkBreadcrumbElement;
     'stk-breadcrumb-item': HTMLStkBreadcrumbItemElement;
+    'stk-button': HTMLStkButtonElement;
+    'stk-button-group': HTMLStkButtonGroupElement;
+    'stk-col': HTMLStkColElement;
     'stk-content': HTMLStkContentElement;
     'stk-footer': HTMLStkFooterElement;
     'stk-header': HTMLStkHeaderElement;
@@ -137,6 +192,7 @@ declare global {
     'stk-header-menu': HTMLStkHeaderMenuElement;
     'stk-layout': HTMLStkLayoutElement;
     'stk-menu-item': HTMLStkMenuItemElement;
+    'stk-row': HTMLStkRowElement;
     'stk-sider': HTMLStkSiderElement;
     'stk-sider-menu': HTMLStkSiderMenuElement;
   }
@@ -164,6 +220,28 @@ declare namespace LocalJSX {
   interface StkBreadcrumbItem extends JSXBase.HTMLAttributes<HTMLStkBreadcrumbItemElement> {
     'label'?: string;
   }
+  interface StkButton extends JSXBase.HTMLAttributes<HTMLStkButtonElement> {
+    'block'?: boolean;
+    'disabled'?: boolean;
+    'icon'?: string;
+    'loading'?: boolean;
+    'type'?: StkButtonType;
+  }
+  interface StkButtonGroup extends JSXBase.HTMLAttributes<HTMLStkButtonGroupElement> {}
+  interface StkCol extends JSXBase.HTMLAttributes<HTMLStkColElement> {
+    'lg'?: StkSpan;
+    'lgOffset'?: StkSpan;
+    'md'?: StkSpan;
+    'mdOffset'?: StkSpan;
+    'offset'?: StkSpan;
+    'sm'?: StkSpan;
+    'smOffset'?: StkSpan;
+    'span'?: StkSpan;
+    'xl'?: StkSpan;
+    'xlOffset'?: StkSpan;
+    'xs'?: StkSpan;
+    'xsOffset'?: StkSpan;
+  }
   interface StkContent extends JSXBase.HTMLAttributes<HTMLStkContentElement> {}
   interface StkFooter extends JSXBase.HTMLAttributes<HTMLStkFooterElement> {}
   interface StkHeader extends JSXBase.HTMLAttributes<HTMLStkHeaderElement> {}
@@ -175,6 +253,7 @@ declare namespace LocalJSX {
   interface StkMenuItem extends JSXBase.HTMLAttributes<HTMLStkMenuItemElement> {
     'label'?: string;
   }
+  interface StkRow extends JSXBase.HTMLAttributes<HTMLStkRowElement> {}
   interface StkSider extends JSXBase.HTMLAttributes<HTMLStkSiderElement> {}
   interface StkSiderMenu extends JSXBase.HTMLAttributes<HTMLStkSiderMenuElement> {}
 
@@ -183,6 +262,9 @@ declare namespace LocalJSX {
     'my-component': MyComponent;
     'stk-breadcrumb': StkBreadcrumb;
     'stk-breadcrumb-item': StkBreadcrumbItem;
+    'stk-button': StkButton;
+    'stk-button-group': StkButtonGroup;
+    'stk-col': StkCol;
     'stk-content': StkContent;
     'stk-footer': StkFooter;
     'stk-header': StkHeader;
@@ -190,6 +272,7 @@ declare namespace LocalJSX {
     'stk-header-menu': StkHeaderMenu;
     'stk-layout': StkLayout;
     'stk-menu-item': StkMenuItem;
+    'stk-row': StkRow;
     'stk-sider': StkSider;
     'stk-sider-menu': StkSiderMenu;
   }
