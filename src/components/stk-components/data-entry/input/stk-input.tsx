@@ -15,17 +15,23 @@ export type inputType =
   shadow: false
 })
 export class StkInput {
-  @Prop({ reflectToAttr: true }) type: inputType = "text";
-  @Prop({ reflectToAttr: true }) defaultValue: string = "";
-  @Prop({ reflectToAttr: true }) value: string = "";
-  @Prop({ reflectToAttr: true }) placeholder: string = "";
-  @Prop({ reflectToAttr: true }) disabled: boolean = false;
-  @Prop({ reflectToAttr: true }) allowClear: boolean = false;
-  @Prop({ reflectToAttr: true }) maxLength: number = 128;
-  @Prop({ reflectToAttr: true }) rows: number = 4;
-  @Prop({ reflectToAttr: true }) min: number = 0;
-  @Prop({ reflectToAttr: true }) max: number = 100000000;
-  @Prop({ reflectToAttr: true }) step: number = 1;
+  @Prop({ reflect: true }) type: inputType = "text";
+  @Prop({ reflect: true }) defaultValue: string = "default";
+  @Prop({ mutable:true })  value: string ;
+  @Prop({ reflect: true }) placeholder: string = "";
+  @Prop({ reflect: true }) disabled: boolean = false;
+  @Prop({ reflect: true }) allowClear: boolean = false;
+  @Prop({ reflect: true }) maxLength: number = 128;
+  @Prop({ reflect: true }) rows: number = 4;
+  @Prop({ reflect: true }) min: number = 0;
+  @Prop({ reflect: true }) max: number = 100000000;
+  @Prop({ reflect: true }) step: number = 1;
+  
+  textInput!: HTMLInputElement;
+
+  handleClearText = () => {
+    this.textInput.value='';
+  }
 
   render() {
     return this.renderInput();
@@ -43,9 +49,10 @@ export class StkInput {
                 placeholder={this.placeholder}
                 disabled={this.disabled}
                 class="stk-input"
+                ref={(el) => this.textInput = el as HTMLInputElement}
               />
-              <span class="stk-input-suffix">
-                <i class="fas fa-times-circle" />
+              <span class="stk-input-suffix" >
+                <i class="fas fa-times-circle" onClick={this.handleClearText}/>
               </span>
             </span>
           );
