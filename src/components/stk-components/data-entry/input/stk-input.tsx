@@ -1,4 +1,4 @@
-import { Component, h, Prop } from "@stencil/core";
+import { Component, h, Prop, State, Listen} from "@stencil/core";
 
 export type inputType =
   | "text"
@@ -26,16 +26,27 @@ export class StkInput {
   @Prop({ reflect: true }) min: number = 0;
   @Prop({ reflect: true }) max: number = 100000000;
   @Prop({ reflect: true }) step: number = 1;
-  
+  @State() clear: boolean=false;
+
   textInput!: HTMLInputElement;
+  
+  @Listen('keydown')
+  handleKeyDown(){
+    if (this.textInput.value!==null)
+      this.clear=false
+    else
+      this.clear=true
+  }
 
   handleClearText = () => {
-    this.textInput.value='';
+    this.clear=!this.clear;
+    this.textInput.value=null;
   }
 
   render() {
     return this.renderInput();
   }
+
 
   renderInput() {
     switch (this.type) {
@@ -52,7 +63,10 @@ export class StkInput {
                 ref={(el) => this.textInput = el as HTMLInputElement}
               />
               <span class="stk-input-suffix" >
-                <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+               {!this.clear
+                 ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+                 : <i class=""/>
+               }
               </span>
             </span>
           );
