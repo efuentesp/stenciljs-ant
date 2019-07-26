@@ -7,7 +7,9 @@ export type inputType =
   | "number"
   | "integer"
   | "currency"
-  | "percentage";
+  | "percentage"
+  | "email"
+  | "phone"
 
 @Component({
   tag: "stk-input",
@@ -54,6 +56,9 @@ export class StkInput {
         if (this.allowClear && !this.disabled) {
           return (
             <span class="stk-input-affix-wrapper">
+              <span class="stk-input-prefix">
+                <i class="fa fa-user-o" />
+              </span>
               <input
                 type="text"
                 value={!this.value ? this.defaultValue : this.value}
@@ -96,18 +101,71 @@ export class StkInput {
       case "password":
         return (
           <span class="stk-input-password stk-input-affix-wrapper">
+            <span class="stk-input-prefix">
+                <i class="fa fa-lock" />
+            </span>
             <input
               type="password"
               value={!this.value ? this.defaultValue : this.value}
               placeholder={this.placeholder}
               disabled={this.disabled}
               class="stk-input"
+              ref={(el) => this.textInput = el as HTMLInputElement}
             />
-            <span class="stk-input-suffix">
-              <i class="fas fa-eye-slash" />
+            <span class="stk-input-suffix" >
+               {!this.clear
+                 ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+                 : <i class=""/>
+               }
             </span>
           </span>
         );
+
+      case "email":
+          return (
+            <span class="stk-input-password stk-input-affix-wrapper">
+              <span class="stk-input-prefix">
+                <i class="fa fa-envelope-o" />
+              </span>
+              <input
+                type="email"
+                value={!this.value ? this.defaultValue : this.value}
+                placeholder={this.placeholder}
+                disabled={this.disabled}
+                class="stk-input"
+                ref={(el) => this.textInput = el as HTMLInputElement}
+              />
+              <span class="stk-input-suffix" >
+               {!this.clear
+                 ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+                 : <i class=""/>
+               }
+              </span>
+            </span>
+      );     
+
+      case "phone":
+          return (
+            <span class="stk-input-password stk-input-affix-wrapper">
+              <span class="stk-input-prefix">
+                <i class="fa fa-phone"/>
+              </span>
+              <input
+                type="phone"
+                value={!this.value ? this.defaultValue : this.value}
+                placeholder={this.placeholder}
+                disabled={this.disabled}
+                class="stk-input"
+                ref={(el) => this.textInput = el as HTMLInputElement}
+              />
+              <span class="stk-input-suffix" >
+               {!this.clear
+                 ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+                 : <i class=""/>
+               }
+              </span>
+            </span>
+      );  
 
       case "number":
         return (
@@ -145,6 +203,7 @@ export class StkInput {
               aria-valuenow={!this.value ? this.defaultValue : this.value}
             >
               <input
+                type="number"
                 class="stk-input-number-input"
                 autocomplete="off"
                 min={this.min}
@@ -157,6 +216,31 @@ export class StkInput {
           </div>
         );
 
+        case "currency":
+          return (
+              <span class="stk-input-affix-wrapper">
+                <span class="stk-input-prefix">
+                 <i class="fa fa-usd" />
+                </span>
+                <input
+                  type="number"
+                  class="stk-input"
+                  min={this.min}
+                  max={this.max}
+                  step={this.step}
+                  value={!this.value ? this.defaultValue : this.value}
+                  placeholder={this.placeholder}
+                  disabled={this.disabled}
+                  ref={(el) => this.textInput = el as HTMLInputElement}
+                />
+                <span class="stk-input-suffix" >
+                 {!this.clear
+                  ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+                  : <i class=""/>
+                 }
+               </span>
+              </span>
+          );
       default:
         break;
     }
