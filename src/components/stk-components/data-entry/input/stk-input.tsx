@@ -1,4 +1,6 @@
-import { Component, h, Prop, State, Listen} from "@stencil/core";
+import { Component, h, Prop, State, Listen, Event,EventEmitter } from "@stencil/core";
+import { Validator, defaultValidator, ValidatorEntry } from '../../../../validators/validator';
+import { getValidator } from '../../../../validators/validator.factory';
 
 export type inputType =
   | "text"
@@ -10,6 +12,7 @@ export type inputType =
   | "percentage"
   | "email"
   | "phone"
+  | "email2"
 
 @Component({
   tag: "stk-input",
@@ -25,19 +28,44 @@ export class StkInput {
   @Prop({ reflect: true }) allowClear: boolean = false;
   @Prop({ reflect: true }) maxLength: number = 128;
   @Prop({ reflect: true }) rows: number = 4;
-  @Prop({ reflect: true }) min: number = 0;
-  @Prop({ reflect: true }) max: number = 100000000;
   @Prop({ reflect: true }) step: number = 1;
+  @Prop({ reflect: true }) min: number = 10;
+  @Prop({ reflect: true }) max: number = 1000000;
   @State() clear: boolean=false;
+  @State() valid: boolean=true;
+  @State() errormsg: string="";
 
   textInput!: HTMLInputElement;
-  
+
+
+
+  @Prop() validator: Array<string | ValidatorEntry | Validator<string>>;
+
+  @Event() changed: EventEmitter<string>;
+
+  _validator: Validator<string> = defaultValidator;
+
+  componentWillLoad() {
+    this._validator = getValidator<string>(this.validator);
+  }
+
+  componentWillUpdate() {
+    this._validator = getValidator<string>(this.validator);
+  }
+
+  handleChange(ev) {
+    this.value = ev.target ? ev.target.value : null;
+    this.changed.emit(this.value);
+  }
+
+
   @Listen('keydown')
   handleKeyDown(){
     if (this.textInput.value!==null)
       this.clear=false
     else
       this.clear=true
+    
   }
 
   handleClearText = () => {
@@ -45,7 +73,21 @@ export class StkInput {
     this.textInput.value=null;
   }
 
+
+
   render() {
+    /*
+   var comp = document.querySelector('stk-input');
+   console.log('comp', comp.validator);
+   let validator = [{
+    name: 'length',
+    options: {
+      min: this.min,
+      max: this.max,
+    }
+   }];
+    comp.validator = validator;
+    */
     return this.renderInput();
   }
 
@@ -55,6 +97,7 @@ export class StkInput {
       case "text":
         if (this.allowClear && !this.disabled) {
           return (
+            <div>
             <span class="stk-input-affix-wrapper">
               <span class="stk-input-prefix">
                 <i class="fa fa-user-o" />
@@ -66,6 +109,7 @@ export class StkInput {
                 disabled={this.disabled}
                 class="stk-input"
                 ref={(el) => this.textInput = el as HTMLInputElement}
+                onInput={(ev) => this.handleChange(ev)}
               />
               <span class="stk-input-suffix" >
                {!this.clear
@@ -74,6 +118,10 @@ export class StkInput {
                }
               </span>
             </span>
+             {!this._validator.validate(this.value) ? 
+               <span class="validation-error">{this._validator.errorMessage}</span>
+               : null }
+            </div>
           );
         } else {
           return (
@@ -123,6 +171,7 @@ export class StkInput {
 
       case "email":
           return (
+            <div>
             <span class="stk-input-password stk-input-affix-wrapper">
               <span class="stk-input-prefix">
                 <i class="fa fa-envelope-o" />
@@ -134,6 +183,7 @@ export class StkInput {
                 disabled={this.disabled}
                 class="stk-input"
                 ref={(el) => this.textInput = el as HTMLInputElement}
+                onInput={(ev) => this.handleChange(ev)}
               />
               <span class="stk-input-suffix" >
                {!this.clear
@@ -142,6 +192,31 @@ export class StkInput {
                }
               </span>
             </span>
+            {!this._validator.validate(this.value) ? 
+              <span class="validation-error">{this._validator.errorMessage}</span>
+              : null }
+           </div>
+      );     
+
+      case "email2":
+        return (
+          <stk-input-email
+                value={!this.value ? this.defaultValue : this.value}
+                placeholder={this.placeholder}
+                disabled={this.disabled}
+               // class="stk-input"
+                validator={[
+                  {
+                   name: 'length',
+                    options: {
+                     min: this.min,
+                     max: this.max,
+                    },
+                  }, 
+                   'email']}
+               // ref={(el) => this.textInput = el as HTMLInputElement}
+                //onInput={(ev) => this.handleChange(ev)}
+              />
       );     
 
       case "phone":
@@ -238,6 +313,30 @@ export class StkInput {
                   ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
                   : <i class=""/>
                  }
+                
+               </span>
+              </span>
+          );
+
+          case "integer":
+          return (
+              <span class="stk-input-affix-wrapper">
+                <input
+                  type="number"
+                  class="stk-input"
+                  min={this.min}
+                  max={this.max}
+                  step={this.step}
+                  value={!this.value ? this.defaultValue : this.value}
+                  placeholder={this.placeholder}
+                  disabled={this.disabled}
+                  ref={(el) => this.textInput = el as HTMLInputElement}
+                />
+                <span class="stk-input-suffix" >
+                 {!this.clear
+                  ? <i class="fas fa-times-circle" onClick={this.handleClearText}/>
+                  : <i class=""/>
+                 }
                </span>
               </span>
           );
@@ -246,3 +345,4 @@ export class StkInput {
     }
   }
 }
+

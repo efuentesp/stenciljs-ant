@@ -16,6 +16,10 @@ import {
   inputType,
 } from './components/stk-components/data-entry/input/stk-input';
 import {
+  Validator,
+  ValidatorEntry,
+} from './validators/validator';
+import {
   RadioGroupOptions,
   RadioGroupOrientation,
 } from './components/stk-components/data-entry/radio-group/stk-radio-group';
@@ -86,6 +90,18 @@ export namespace Components {
     'rows': number;
     'step': number;
     'type': inputType;
+    'validator': Array<string | ValidatorEntry | Validator<string>>;
+    'value': string;
+  }
+  interface StkInputEmail {
+    'allowClear': boolean;
+    'defaultValue': string;
+    'disabled': boolean;
+    'maxLength': number;
+    'placeholder': string;
+    'rows': number;
+    'step': number;
+    'validator': Array<string | ValidatorEntry | Validator<string>>;
     'value': string;
   }
   interface StkLayout {
@@ -208,6 +224,12 @@ declare global {
     new (): HTMLStkInputElement;
   };
 
+  interface HTMLStkInputEmailElement extends Components.StkInputEmail, HTMLStencilElement {}
+  var HTMLStkInputEmailElement: {
+    prototype: HTMLStkInputEmailElement;
+    new (): HTMLStkInputEmailElement;
+  };
+
   interface HTMLStkLayoutElement extends Components.StkLayout, HTMLStencilElement {}
   var HTMLStkLayoutElement: {
     prototype: HTMLStkLayoutElement;
@@ -281,6 +303,7 @@ declare global {
     'stk-header-logo': HTMLStkHeaderLogoElement;
     'stk-header-menu': HTMLStkHeaderMenuElement;
     'stk-input': HTMLStkInputElement;
+    'stk-input-email': HTMLStkInputEmailElement;
     'stk-layout': HTMLStkLayoutElement;
     'stk-menu-item': HTMLStkMenuItemElement;
     'stk-radio': HTMLStkRadioElement;
@@ -350,10 +373,24 @@ declare namespace LocalJSX {
     'max'?: number;
     'maxLength'?: number;
     'min'?: number;
+    'onChanged'?: (event: CustomEvent<string>) => void;
     'placeholder'?: string;
     'rows'?: number;
     'step'?: number;
     'type'?: inputType;
+    'validator'?: Array<string | ValidatorEntry | Validator<string>>;
+    'value'?: string;
+  }
+  interface StkInputEmail extends JSXBase.HTMLAttributes<HTMLStkInputEmailElement> {
+    'allowClear'?: boolean;
+    'defaultValue'?: string;
+    'disabled'?: boolean;
+    'maxLength'?: number;
+    'onChanged'?: (event: CustomEvent<string>) => void;
+    'placeholder'?: string;
+    'rows'?: number;
+    'step'?: number;
+    'validator'?: Array<string | ValidatorEntry | Validator<string>>;
     'value'?: string;
   }
   interface StkLayout extends JSXBase.HTMLAttributes<HTMLStkLayoutElement> {
@@ -408,6 +445,7 @@ declare namespace LocalJSX {
     'stk-header-logo': StkHeaderLogo;
     'stk-header-menu': StkHeaderMenu;
     'stk-input': StkInput;
+    'stk-input-email': StkInputEmail;
     'stk-layout': StkLayout;
     'stk-menu-item': StkMenuItem;
     'stk-radio': StkRadio;

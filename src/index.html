@@ -139,11 +139,21 @@
             <br />
             <stk-row>
               <stk-col span="12">
+                `<stk-input
+                  default-value=""
+                  value="ABCDE"
+                  placeholder="Placeholder..."
+                  allow-clear
+                  id="stk-input0"
+                  min=2
+                  max=10
+                ></stk-input>`
                 <stk-input
                   default-value=""
                   value="ABC"
                   placeholder="Placeholder..."
                   allow-clear
+                  id="stk-input1"
                 ></stk-input>
                 <stk-input
                   default-value=""
@@ -156,6 +166,15 @@
                   default-value=""
                   value=""
                   placeholder="Email..."
+                  id="stk-input2"
+                ></stk-input>
+                <stk-input
+                  type="email2"
+                  default-value="a@hotmail.com"
+                  value=""
+                  min=7
+                  max=17
+                  placeholder="Email..."
                 ></stk-input>
                 <stk-input
                   type="number"
@@ -165,9 +184,18 @@
                 ></stk-input>
                 <stk-input
                   type="currency"
-                  default-value="50"
-                  value=""
+                  default-value="1"
+                  value="10"
+                  step="0.1"
+                  min=1
+                  max=10
                   placeholder="Currency..."
+                ></stk-input>
+                <stk-input
+                  type="integer"
+                  default-value="150"
+                  value=""
+                  placeholder="Integer..."
                 ></stk-input>
                 <stk-input
                   type="phone"
@@ -268,5 +296,45 @@
     function onClick() {
       alert("onClick()");
     }
+
+  //var comp = document.querySelector('animated-input');
+/*
+  var comp = document.getElementById('stk-input0');
+  console.log('comp', comp.validator);
+  let validator0 = [{
+    name: 'length',
+    options: {
+      min: 6
+    }
+  }];
+  comp.validator = validator0;
+
+  var comp = document.getElementById('stk-input-curp');
+  console.log('comp', comp.validator);
+  let validator = [{
+    name: 'length',
+    options: {
+      min: 6,
+      max: 10,
+    }
+  },'curp'];
+  comp.validator = validator;
+  
+ 
+  var comp = document.getElementById('stk-input2');
+  console.log('comp', comp.validator);
+   let validator1 = [
+   {
+    name: 'length',
+     options: {
+      min: 7,
+      max: 15,
+     },
+   }, 
+    'email','required'];
+
+  comp.validator = validator1;
+  */
+  
   </script>
 </html>
